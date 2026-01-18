@@ -40,7 +40,7 @@ export default function TodoTable({ todos }: IIodos) {
             {todos?.map((todo, idx: number) => (
               <TableRow
                 key={todo?.id}
-                className="hover:bg-accent odd:bg-input/30 dark:odd:bg-input/30 dark:hover:bg-input/50"
+                className="hover:bg-accent relative odd:bg-input/30 dark:odd:bg-input/30 dark:hover:bg-input/50"
               >
                 <TableCell>{idx + 1}</TableCell>
                 <TableCell className="font-medium">{todo?.title}</TableCell>
@@ -61,6 +61,11 @@ export default function TodoTable({ todos }: IIodos) {
                 <TableCell className="flex items-center space-x-2 justify-end">
                   <TodosTableActions todo={todo} />
                 </TableCell>
+                <td>
+                  {todo.updatedAt.getTime() !== todo.createdAt.getTime() && (
+                    <span className="absolute bottom-0 right-25 text-gray-600 dark:text-gray-300">Edited</span>
+                  )}
+                </td>
               </TableRow>
             ))}
           </TableBody>

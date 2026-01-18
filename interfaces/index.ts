@@ -4,4 +4,5 @@ export interface ITodo {
     completed: boolean;
     id: string;
     createdAt: Date;
+    updatedAt: Date;
 };
