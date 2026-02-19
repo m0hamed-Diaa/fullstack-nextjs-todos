@@ -21,6 +21,7 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   title: "Todos controlling",
   description: "Create your todos now",
+  icons: "/colorful_todo_list.avif"
 };
 
 export default function RootLayout({
