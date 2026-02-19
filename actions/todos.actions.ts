@@ -5,6 +5,17 @@ import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
+interface IProps {
+    OrderBy?: "desc" | "asc";
+}
+
+export const getAllTodosListAction = async ({ OrderBy = "desc" }: IProps = {}) => {
+    return await prisma.todo.findMany({
+        orderBy: { createdAt: OrderBy },
+    });
+};
+
+
 export const getUserTodoListAction = async ({ userId }: { userId: string | null }) => {
     // ERROR HANDLEING ***********
     return await prisma.todo.findMany({

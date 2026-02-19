@@ -27,7 +27,7 @@ const InternetConnectionServicesProvider = ({
 
     const handleOffline = () => {
       toastIdRef.current = toast.error("You're offline", {
-        description: "Please check your internet connection",
+        description: "Please check your internet connection to continue",
         position: "top-center",
         icon: <WifiOff size={20} />,
         duration: Infinity,

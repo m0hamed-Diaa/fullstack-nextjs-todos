@@ -5,7 +5,8 @@ import { ThemeProvider } from "@/components/ThemeProvider";
 import { Toaster } from "sonner";
 import { ClerkProvider } from "@clerk/nextjs";
 import InternetConnectionServicesProvider from "@/Providers/InternetConnection";
-import { Header } from "@/components/Header";
+import { SignHeader } from "@/components/SignHeader";
+import OnOpenHomePage from "@/components/OnOpenHomePage";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -33,8 +34,7 @@ export default function RootLayout({
         <body
           className={`${geistSans.variable} ${geistMono.variable} antialiased`}
         >
-          <Header />
-
+          <SignHeader />
           <ThemeProvider
             attribute="class"
             defaultTheme="system"
@@ -42,9 +42,10 @@ export default function RootLayout({
             disableTransitionOnChange
           >
             <InternetConnectionServicesProvider>
+              <OnOpenHomePage />
               {children}
             </InternetConnectionServicesProvider>
-            <Toaster position="top-right" richColors />
+            <Toaster position="top-center" richColors />
           </ThemeProvider>
         </body>
       </html>

@@ -2,11 +2,17 @@ import { getUserTodoListAction } from "@/actions/todos.actions";
 import { AddTodoForm } from "@/components/AddTodoForm";
 import { ModeToggle } from "@/components/ModeToggle";
 import TodoTable from "@/components/TodoTable";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { SignedIn, UserButton } from "@clerk/nextjs";
-import { auth } from "@clerk/nextjs/server";
+import { redirect } from "next/navigation";
 
 export default async function HomePage() {
   const { userId } = await auth();
+  if (!userId) {
+    throw new Error("Not authenticated");
+  }
+  const user = await currentUser();
+  if (user?.publicMetadata?.role === "admin") return redirect("/admin");
   const todos = await getUserTodoListAction({ userId });
 
   return (
